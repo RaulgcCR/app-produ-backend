@@ -1,0 +1,2 @@
+class FaseType < ApplicationRecord
+end

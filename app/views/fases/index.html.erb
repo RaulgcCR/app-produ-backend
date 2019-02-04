@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>P</th>
+      <th>Q</th>
+      <th>Error</th>
+      <th>Z</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fases.each do |fase| %>
+      <tr>
+        <td><%= fase.p %></td>
+        <td><%= fase.q %></td>
+        <td><%= fase.error %></td>
+        <td><%= fase.z %></td>
+        <td><%= link_to 'Show', fase %></td>
+        <td><%= link_to 'Edit', edit_fase_path(fase) %></td>
+        <td><%= link_to 'Destroy', fase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fase', new_fase_path %>

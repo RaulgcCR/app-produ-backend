@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  p: 1.5
+  q: 1.5
+  error: 1.5
+  z: 1.5
+
+two:
+  p: 1.5
+  q: 1.5
+  error: 1.5
+  z: 1.5

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>P:</strong>
+  <%= @fase.p %>
+</p>
+
+<p>
+  <strong>Q:</strong>
+  <%= @fase.q %>
+</p>
+
+<p>
+  <strong>Error:</strong>
+  <%= @fase.error %>
+</p>
+
+<p>
+  <strong>Z:</strong>
+  <%= @fase.z %>
+</p>
+
+<%= link_to 'Edit', edit_fase_path(@fase) %> |
+<%= link_to 'Back', fases_path %>

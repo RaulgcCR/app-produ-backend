@@ -1,0 +1,17 @@
+<%= form_with(model: operator_register, local: true) do |form| %>
+  <% if operator_register.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(operator_register.errors.count, "error") %> prohibited this operator_register from being saved:</h2>
+
+      <ul>
+      <% operator_register.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

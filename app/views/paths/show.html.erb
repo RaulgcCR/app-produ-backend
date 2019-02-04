@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cantoperarios:</strong>
+  <%= @path.cantOperarios %>
+</p>
+
+<p>
+  <strong>Temperatura:</strong>
+  <%= @path.temperatura %>
+</p>
+
+<p>
+  <strong>Humedad:</strong>
+  <%= @path.humedad %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @path.fecha %>
+</p>
+
+<p>
+  <strong>Hora:</strong>
+  <%= @path.hora %>
+</p>
+
+<p>
+  <strong>Comentario:</strong>
+  <%= @path.comentario %>
+</p>
+
+<%= link_to 'Edit', edit_path_path(@path) %> |
+<%= link_to 'Back', paths_path %>

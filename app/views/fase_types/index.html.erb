@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fase Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fase_types.each do |fase_type| %>
+      <tr>
+        <td><%= fase_type.nombre %></td>
+        <td><%= link_to 'Show', fase_type %></td>
+        <td><%= link_to 'Edit', edit_fase_type_path(fase_type) %></td>
+        <td><%= link_to 'Destroy', fase_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fase Type', new_fase_type_path %>

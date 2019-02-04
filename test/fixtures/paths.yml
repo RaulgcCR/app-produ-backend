@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cantOperarios: 1
+  temperatura: 1
+  humedad: 1
+  fecha: 2019-02-03
+  hora: 2019-02-03 17:59:18
+  comentario: MyText
+
+two:
+  cantOperarios: 1
+  temperatura: 1
+  humedad: 1
+  fecha: 2019-02-03
+  hora: 2019-02-03 17:59:18
+  comentario: MyText

@@ -1,0 +1,2 @@
+class OperatorRegister < ApplicationRecord
+end

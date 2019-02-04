@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  cantMuestras: 1
+  cantMuestrasTotal: 1
+  descripcion: MyText
+  fase: 1
+
+two:
+  nombre: MyString
+  cantMuestras: 1
+  cantMuestrasTotal: 1
+  descripcion: MyText
+  fase: 1

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Samplings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Cantmuestras</th>
+      <th>Cantmuestrastotal</th>
+      <th>Descripcion</th>
+      <th>Fase</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @samplings.each do |sampling| %>
+      <tr>
+        <td><%= sampling.nombre %></td>
+        <td><%= sampling.cantMuestras %></td>
+        <td><%= sampling.cantMuestrasTotal %></td>
+        <td><%= sampling.descripcion %></td>
+        <td><%= sampling.fase %></td>
+        <td><%= link_to 'Show', sampling %></td>
+        <td><%= link_to 'Edit', edit_sampling_path(sampling) %></td>
+        <td><%= link_to 'Destroy', sampling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sampling', new_sampling_path %>

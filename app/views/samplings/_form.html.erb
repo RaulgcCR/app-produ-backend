@@ -1,0 +1,42 @@
+<%= form_with(model: sampling, local: true) do |form| %>
+  <% if sampling.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sampling.errors.count, "error") %> prohibited this sampling from being saved:</h2>
+
+      <ul>
+      <% sampling.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :sampling_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cantMuestras %>
+    <%= form.number_field :cantMuestras, id: :sampling_cantMuestras %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cantMuestrasTotal %>
+    <%= form.number_field :cantMuestrasTotal, id: :sampling_cantMuestrasTotal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :sampling_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fase %>
+    <%= form.number_field :fase, id: :sampling_fase %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @sampling.nombre %>
+</p>
+
+<p>
+  <strong>Cantmuestras:</strong>
+  <%= @sampling.cantMuestras %>
+</p>
+
+<p>
+  <strong>Cantmuestrastotal:</strong>
+  <%= @sampling.cantMuestrasTotal %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @sampling.descripcion %>
+</p>
+
+<p>
+  <strong>Fase:</strong>
+  <%= @sampling.fase %>
+</p>
+
+<%= link_to 'Edit', edit_sampling_path(@sampling) %> |
+<%= link_to 'Back', samplings_path %>

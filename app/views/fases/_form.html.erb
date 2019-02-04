@@ -1,0 +1,37 @@
+<%= form_with(model: fase, local: true) do |form| %>
+  <% if fase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fase.errors.count, "error") %> prohibited this fase from being saved:</h2>
+
+      <ul>
+      <% fase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :p %>
+    <%= form.text_field :p, id: :fase_p %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q %>
+    <%= form.text_field :q, id: :fase_q %>
+  </div>
+
+  <div class="field">
+    <%= form.label :error %>
+    <%= form.text_field :error, id: :fase_error %>
+  </div>
+
+  <div class="field">
+    <%= form.label :z %>
+    <%= form.text_field :z, id: :fase_z %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
