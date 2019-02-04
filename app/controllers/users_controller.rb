@@ -5,7 +5,10 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-
+    @user = User.all
+    @user.each do |user|
+      user = parsearUsuario(user)
+    end
   end
 
   # GET /users/1
