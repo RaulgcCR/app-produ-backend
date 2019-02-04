@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20190204001551) do
 
-  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -22,13 +25,13 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["fase_type_id"], name: "index_activities_on_fase_type_id"
   end
 
-  create_table "activity_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "activity_types", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "colaborators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "colaborators", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -49,17 +52,17 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["user_id"], name: "index_colaborators_on_user_id"
   end
 
-  create_table "fase_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "fase_types", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "fases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.float "p", limit: 24
-    t.float "q", limit: 24
-    t.float "error", limit: 24
-    t.float "z", limit: 24
+  create_table "fases", force: :cascade do |t|
+    t.float "p"
+    t.float "q"
+    t.float "error"
+    t.float "z"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "sampling_id"
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["sampling_id"], name: "index_fases_on_sampling_id"
   end
 
-  create_table "operator_registers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "operator_registers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "path_id"
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["path_id"], name: "index_operator_registers_on_path_id"
   end
 
-  create_table "paths", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "paths", force: :cascade do |t|
     t.integer "cantOperarios"
     t.integer "temperatura"
     t.integer "humedad"
@@ -90,13 +93,13 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["fase_id"], name: "index_paths_on_fase_id"
   end
 
-  create_table "positions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "positions", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "projects", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
     t.datetime "created_at", null: false
@@ -105,7 +108,7 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
-  create_table "samplings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "samplings", force: :cascade do |t|
     t.string "nombre"
     t.integer "cantMuestras"
     t.integer "cantMuestrasTotal"
@@ -117,7 +120,7 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["project_id"], name: "index_samplings_on_project_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido1"
     t.string "apellido2"
