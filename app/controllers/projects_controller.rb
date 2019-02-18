@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    @projects.each do |project|
+    @project = Project.all
+    @project.each do |project|
       project = parsearProject(project)
     end
   end
@@ -18,6 +19,56 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+  end
+
+  def newproject
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user == nil
+      nombre = deparser(params[:nombre])
+      descripcion = deparser(params[:descripcion])
+      tok= createToken()
+      @project= Project.new(nombre: nombre, descripcion: descripcion)
+      respond_to do |format|
+        if @project.save
+          @project = parsearProject(@project)
+          format.html { redirect_to @project, notice: 'Project was successfully created.' }
+          format.json { render :new, status: :created, location: @project }
+        else
+          format.html { render :new }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @project = Project.new()
+        format.html { render :new }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def newmostrar
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @projects = Project.where(user_id: params[:usuario])
+      @users = []
+      @projects.each do |project|
+        project = parsearProject(project)
+      end
+      @users.each do |user|
+        user = parsearUsuario(user)
+      end
+    end
   end
 
   # GET /projects/1/edit

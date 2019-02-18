@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sampling_types
   resources :fase_types
   resources :operator_registers
   resources :activity_types
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
   root :to => redirect("/admins/sign_in")
 
   get '/users/login/:correo/:password' => 'users#newlog'
+
+  get '/projects/mostrar/:usuario/:token' => 'comments#newmostrar'
 end

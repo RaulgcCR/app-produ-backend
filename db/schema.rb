@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190204001551) do
+ActiveRecord::Schema.define(version: 20190214214139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "fase_type_id"
     t.bigint "activity_type_id"
+    t.bigint "sampling_type_id"
     t.index ["activity_type_id"], name: "index_activities_on_activity_type_id"
-    t.index ["fase_type_id"], name: "index_activities_on_fase_type_id"
+    t.index ["sampling_type_id"], name: "index_activities_on_sampling_type_id"
   end
 
   create_table "activity_types", force: :cascade do |t|
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "sampling_types", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "samplings", force: :cascade do |t|
     t.string "nombre"
     t.integer "cantMuestras"
@@ -117,7 +123,9 @@ ActiveRecord::Schema.define(version: 20190204001551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
+    t.bigint "sampling_type_id"
     t.index ["project_id"], name: "index_samplings_on_project_id"
+    t.index ["sampling_type_id"], name: "index_samplings_on_sampling_type_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -134,7 +142,7 @@ ActiveRecord::Schema.define(version: 20190204001551) do
   end
 
   add_foreign_key "activities", "activity_types"
-  add_foreign_key "activities", "fase_types"
+  add_foreign_key "activities", "sampling_types"
   add_foreign_key "colaborators", "projects"
   add_foreign_key "colaborators", "users"
   add_foreign_key "fases", "fase_types"
@@ -144,5 +152,6 @@ ActiveRecord::Schema.define(version: 20190204001551) do
   add_foreign_key "paths", "fases"
   add_foreign_key "projects", "users"
   add_foreign_key "samplings", "projects"
+  add_foreign_key "samplings", "sampling_types"
   add_foreign_key "users", "positions"
 end
