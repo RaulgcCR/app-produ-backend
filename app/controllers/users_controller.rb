@@ -25,6 +25,9 @@ class UsersController < ApplicationController
     mail = deparser(params[:correo])
     pwd = deparser(params[:password])
     valor = User.where(correo: mail, password: pwd)
+    puts "HOLAAAA"
+    puts mail
+    puts pwd
       valor.each do |parte|
         parte = parsearUsuario(parte)
       end
