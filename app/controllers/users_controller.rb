@@ -22,15 +22,15 @@ class UsersController < ApplicationController
   end
 
   def newlog
-    mail = deparser(params[:correo])
-    pwd = deparser(params[:password])
+    mail = params[:correo]
+    pwd = params[:password]
     valor = User.where(correo: mail, password: pwd)
     puts "HOLAAAA"
     puts mail
     puts pwd
-      valor.each do |parte|
-        parte = parsearUsuario(parte)
-      end
+     # valor.each do |parte|
+       # parte = parsearUsuario(parte)
+      #end
     @user = valor
   end
 
