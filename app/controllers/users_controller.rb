@@ -22,8 +22,10 @@ class UsersController < ApplicationController
   end
 
   def newlog
-    mail = params[:correo]
-    pwd = params[:password]
+    puts "HOLAAAAssssssssss"
+    @jsonData = JSON.parse(response.body)
+    mail = @jsonData['correo']
+    pwd = @jsonData['password']
     valor = User.where(correo: mail, password: pwd)
     puts "HOLAAAA"
     puts mail
