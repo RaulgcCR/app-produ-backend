@@ -22,14 +22,14 @@ class UsersController < ApplicationController
   end
 
   def newlog
-    puts "HOLAAAAssssssssss"
+    logger.debug "HOLAAAAssssssssss"
     @jsonData = JSON.parse(response.body)
     mail = @jsonData['correo']
     pwd = @jsonData['password']
     valor = User.where(correo: mail, password: pwd)
-    puts "HOLAAAA"
-    puts mail
-    puts pwd
+    logger.debug "HOLAAAA"
+    logger.debug mail
+    logger.debug pwd
      # valor.each do |parte|
        # parte = parsearUsuario(parte)
       #end
