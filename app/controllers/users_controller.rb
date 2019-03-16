@@ -23,9 +23,9 @@ class UsersController < ApplicationController
 
   def newlog
     logger.debug "HOLAAAAssssssssss"
-    @jsonData = JSON.parse(response.body)
-    mail = @jsonData['correo']
-    pwd = @jsonData['password']
+    #@jsonData = JSON.parse(response.body)
+    mail = params[:correo]
+    pwd = params[:password]
     valor = User.where(correo: mail, password: pwd)
     logger.debug "HOLAAAA"
     logger.debug mail
