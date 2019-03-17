@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
   # GET /users
   # GET /users.json
   def index
@@ -23,6 +24,12 @@ class UsersController < ApplicationController
 
   def newlog
     logger.debug "HOLAAAAssssssssss"
+    debug  "HOLAAAAssssssssss"
+    config.logger = Logger.new(STDOUT)
+    config.logger = Log4r::Logger.new("Application Log")   
+    logger.debug "Person attributes hash: #{@person.attributes.inspect}"
+    logger.info "Processing the request..."
+    logger.fatal "Terminating application, raised unrecoverable error!!!"
     #@jsonData = JSON.parse(response.body)
     mail = params[:correo]
     pwd = params[:password]
