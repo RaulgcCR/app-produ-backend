@@ -24,20 +24,14 @@ class UsersController < ApplicationController
   end
 
   def newlog
-    logger.debug "HOLAAAAssssssssss"
-    debug  "HOLAAAAssssssssss"
-    config.logger = Logger.new(STDOUT)
-    config.logger = Log4r::Logger.new("Application Log")   
-    logger.debug "Person attributes hash: #{@person.attributes.inspect}"
-    logger.info "Processing the request..."
-    logger.fatal "Terminating application, raised unrecoverable error!!!"
+    puts "HOLAAAAssssssssss"
     #@jsonData = JSON.parse(response.body)
     mail = params[:correo]
     pwd = params[:password]
     valor = User.where(correo: mail, password: pwd)
-    logger.debug "HOLAAAA"
-    logger.debug mail
-    logger.debug pwd
+    puts "HOLAAAA"
+    puts mail
+    puts pwd
      # valor.each do |parte|
        # parte = parsearUsuario(parte)
       #end
