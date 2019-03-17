@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
+  before_action :set_default_response_format
 
 
   # GET /users
@@ -110,4 +111,9 @@ class UsersController < ApplicationController
       params[:user][:token] = createToken()
       params.require(:user).permit(:nombre, :apellido1, :apellido2, :correo, :password, :token)
     end
+
+  protected
+      def set_default_response_format
+        request.format = :json
+      end
 end
