@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-
+ # before_action :set_default_response_format
 
 
   # GET /users
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def newlog
+    request.format = :json
     mail = params[:correo]
     pwd = params[:password]
     valor = User.where(correo: mail, password: pwd)
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
 
 
   def newuser
+    request.format = :json
     @user = nil
     @user = User.find_by(correo: params[:correo])
     if @user == nil
@@ -137,4 +139,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:nombre, :apellido1, :apellido2, :correo, :password, :token)
     end
 
+  #protected
+      #def set_default_response_format
+       # request.format = :json
+      #end
 end

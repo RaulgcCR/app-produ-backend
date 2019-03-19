@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   root :to => redirect("/admins/sign_in")
 
   post '/users/login/' => 'users#newlog'
+  post '/users/signup/' => 'users#newlog'
+
 
   get '/projects/mostrar/:usuario/:token' => 'comments#newmostrar'
 end
