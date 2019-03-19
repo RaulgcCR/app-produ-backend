@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-  before_action :set_default_response_format
+
 
 
   # GET /users
@@ -25,18 +25,43 @@ class UsersController < ApplicationController
   end
 
   def newlog
-    puts "HOLAAAAssssssssss"
-    #@jsonData = JSON.parse(response.body)
     mail = params[:correo]
     pwd = params[:password]
     valor = User.where(correo: mail, password: pwd)
-    puts "HOLAAAA"
-    puts mail
-    puts pwd
      # valor.each do |parte|
        # parte = parsearUsuario(parte)
       #end
     @user = valor
+  end
+
+
+  def newuser
+    @user = nil
+    @user = User.find_by(correo: params[:correo])
+    if @user == nil
+      name = params[:nombre]
+      lastname = params[:apellido1]
+      secondlastname =  params[:apellido2]
+      mail=  params[:correo]
+      pwd=  params[:password]
+      tok= createToken()
+      @user= User.new(nombre: name, apellido1: lastname, apellido2: secondlastname, correo: mail, password: pwd, token: tok)
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.json { render :new, status: :created, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @user = User.new()
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def newLogToken
@@ -112,8 +137,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:nombre, :apellido1, :apellido2, :correo, :password, :token)
     end
 
-  protected
-      def set_default_response_format
-        request.format = :json
-      end
 end
