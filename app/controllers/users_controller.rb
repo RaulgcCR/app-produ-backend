@@ -31,6 +31,8 @@ class UsersController < ApplicationController
     puts "Hola a todos 2!"
     pwd = params[:password]
     puts "Hola a todos 3!"
+    puts mail
+    puts pwd
     valor = User.where(correo: mail, password: pwd)
      # valor.each do |parte|
        # parte = parsearUsuario(parte)
