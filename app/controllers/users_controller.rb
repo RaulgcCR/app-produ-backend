@@ -26,8 +26,11 @@ class UsersController < ApplicationController
 
   def newlog
     #request.format = :json
+    puts "Hola a todos!"
     mail = params[:correo]
+    puts "Hola a todos 2!"
     pwd = params[:password]
+    puts "Hola a todos 3!"
     valor = User.where(correo: mail, password: pwd)
      # valor.each do |parte|
        # parte = parsearUsuario(parte)
