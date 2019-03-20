@@ -25,19 +25,16 @@ class UsersController < ApplicationController
   end
 
   def newlog
-    #request.format = :json
-    puts "Hola a todos!"
-    mail = params[:correo]
-    puts "Hola a todos 2!"
-    pwd = params[:password]
-    puts "Hola a todos 3!"
-    puts mail
-    puts pwd
-    valor = User.where(correo: mail, password: pwd)
-     # valor.each do |parte|
-       # parte = parsearUsuario(parte)
-      #end
-    @user = valor
+    respond_to do |format|
+      puts "Hola a todos!"
+      mail = params[:correo]
+      pwd = params[:password]
+      puts mail
+      puts pwd
+      valor = User.where(correo: mail, password: pwd)
+      @user = valor
+      format.json { render :show, status: :created, location: @user }
+    end
   end
 
 
