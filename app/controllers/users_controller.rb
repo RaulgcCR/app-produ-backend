@@ -32,9 +32,7 @@ class UsersController < ApplicationController
     puts pwd
     valor = User.where(correo: mail, password: pwd)
     @user = valor
-    respond_to do |format|
-      format.json { render :show, status: :created, location: @user }
-    end
+    resources :posts, :defaults => { :format => 'json' }
   end
 
 
