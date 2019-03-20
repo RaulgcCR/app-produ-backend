@@ -25,21 +25,21 @@ class UsersController < ApplicationController
   end
 
   def newlog
+    puts "Hola a todos!"
+    mail = params[:correo]
+    pwd = params[:password]
+    puts mail
+    puts pwd
+    valor = User.where(correo: mail, password: pwd)
+    @user = valor
     respond_to do |format|
-      puts "Hola a todos!"
-      mail = params[:correo]
-      pwd = params[:password]
-      puts mail
-      puts pwd
-      valor = User.where(correo: mail, password: pwd)
-      @user = valor
       format.json { render :show, status: :created, location: @user }
     end
   end
 
 
   def newuser
-    #request.format = :json
+    
     @user = nil
     @user = User.find_by(correo: params[:correo])
     if @user == nil
