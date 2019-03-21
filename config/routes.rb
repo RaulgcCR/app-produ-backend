@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   root :to => redirect("/admins/sign_in")
 
   post '/users/login/' => 'users#newlog'
-  post '/users/signup/' => 'users#newlog'
+  post '/users/signup/' => 'users#newuser'
 
   post '/projects/newproject' => 'projects#newproject'
 
