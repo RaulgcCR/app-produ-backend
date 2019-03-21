@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /projects
   # GET /projects.json
@@ -32,6 +32,7 @@ class ProjectsController < ApplicationController
       end
     end
     puts "Ël diablo"
+    puts @user.nombre
     if @user == nil
       nombre = params[:nombre]
       descripcion = params[:descripcion]
