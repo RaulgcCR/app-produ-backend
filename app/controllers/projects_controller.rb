@@ -23,15 +23,18 @@ class ProjectsController < ApplicationController
 
   def newproject
     @user = nil
+    puts "Me lleva"
     User.all.each do |usu|
       if usu.token == params[:token]
         @user = usu
       end
     end
+    puts "Ël diablo"
     if @user == nil
       nombre = params[:nombre]
       descripcion = params[:descripcion]
       user_id = params[:user_id]
+      puts "Kayser Soze"
       tok= createToken()
       @project= Project.new(nombre: nombre, descripcion: descripcion, user_id: user_id)
       respond_to do |format|
