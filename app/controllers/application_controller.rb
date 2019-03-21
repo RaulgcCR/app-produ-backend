@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session,
-      if: Proc.new { |c| c.request.format =~ %r{application/json} }
+  protect_from_forgery with: :exception
+  skip_before_filter :verify_authenticity_token
 
   def parser(palabra)
 	  dict_1= {":"=>"D", "/"=>"S","."=>"P","_"=>"R","-"=>"G",","=>"C","&"=>"A","%"=>"V","="=>"E","?"=>"I","@"=>"K",
