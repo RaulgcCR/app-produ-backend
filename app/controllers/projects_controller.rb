@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
     end
     puts "Ël diablo"
     puts @user.nombre
-    if @user == nil
+    if @user != nil
       nombre = params[:nombre]
       descripcion = params[:descripcion]
       user_id = params[:user_id]
