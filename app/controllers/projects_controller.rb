@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   def newproject
     @user = nil
     puts "Me lleva"
+    puts params[:token]
     User.all.each do |usu|
       if usu.token == params[:token]
         @user = usu
