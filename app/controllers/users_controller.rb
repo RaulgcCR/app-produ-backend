@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     puts mail
     puts pwd
     valor = User.where(correo: mail, password: pwd)
-    @user = valor
+    @user = User.find_by(id: valor.id)
   end
 
 
