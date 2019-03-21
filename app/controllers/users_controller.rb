@@ -43,10 +43,11 @@ class UsersController < ApplicationController
       name = params[:nombre]
       lastname = params[:apellido1]
       secondlastname =  params[:apellido2]
-      mail=  params[:correo]
-      pwd=  params[:password]
+      mail =  params[:correo]
+      pwd =  params[:password]
+      position = params[:position_id]
       tok= createToken()
-      @user= User.new(nombre: name, apellido1: lastname, apellido2: secondlastname, correo: mail, password: pwd, token: tok)
+      @user= User.new(nombre: name, apellido1: lastname, apellido2: secondlastname, correo: mail, password: pwd, token: tok, position_id: position)
       respond_to do |format|
         if @user.save
           format.html { redirect_to @user, notice: 'User was successfully created.' }
