@@ -140,6 +140,6 @@ class UsersController < ApplicationController
 
   protected
       def set_default_response_format
-        request.format = :json
+        #request.format = :json
       end
 end
