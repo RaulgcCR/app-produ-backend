@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_sesssion
+  protect_from_forgery 
 
   def parser(palabra)
 	  dict_1= {":"=>"D", "/"=>"S","."=>"P","_"=>"R","-"=>"G",","=>"C","&"=>"A","%"=>"V","="=>"E","?"=>"I","@"=>"K",
