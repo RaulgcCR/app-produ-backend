@@ -32,7 +32,6 @@ class UsersController < ApplicationController
     puts pwd
     valor = User.where(correo: mail, password: pwd)
     @user = valor
-    #resources :posts, :defaults => { :format => 'json' }
   end
 
 
@@ -141,6 +140,6 @@ class UsersController < ApplicationController
 
   protected
       def set_default_response_format
-        request.format = :json
+        #request.format = :json
       end
 end
