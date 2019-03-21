@@ -31,8 +31,9 @@ class ProjectsController < ApplicationController
     if @user == nil
       nombre = params[:nombre]
       descripcion = params[:descripcion]
+      user_id = params[:user_id]
       tok= createToken()
-      @project= Project.new(nombre: nombre, descripcion: descripcion)
+      @project= Project.new(nombre: nombre, descripcion: descripcion, user_id: user_id)
       respond_to do |format|
         if @project.save
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
