@@ -1,1 +1,1 @@
-json.usuario @user 
+json.usuario @user.to_json(:except => ['created_at', 'updated_at'])

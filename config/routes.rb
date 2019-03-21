@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post '/users/login/' => 'users#newlog'
   post '/users/signup/' => 'users#newlog'
 
+  post '/projects/newproject' => 'projects#newproject'
 
   get '/projects/mostrar/:usuario/:token' => 'comments#newmostrar'
 end

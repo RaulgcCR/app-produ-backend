@@ -29,13 +29,12 @@ class ProjectsController < ApplicationController
       end
     end
     if @user == nil
-      nombre = deparser(params[:nombre])
-      descripcion = deparser(params[:descripcion])
+      nombre = params[:nombre]
+      descripcion = params[:descripcion]
       tok= createToken()
       @project= Project.new(nombre: nombre, descripcion: descripcion)
       respond_to do |format|
         if @project.save
-          @project = parsearProject(@project)
           format.html { redirect_to @project, notice: 'Project was successfully created.' }
           format.json { render :new, status: :created, location: @project }
         else
