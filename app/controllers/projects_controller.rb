@@ -24,20 +24,15 @@ class ProjectsController < ApplicationController
 
   def newproject
     @user = nil
-    puts "Me lleva"
-    puts params[:token]
     User.all.each do |usu|
       if usu.token == params[:token]
         @user = usu
       end
     end
-    puts "Ël diablo"
-    puts @user.nombre
     if @user != nil
       nombre = params[:nombre]
       descripcion = params[:descripcion]
       user_id = params[:user_id]
-      puts "Kayser Soze"
       tok= createToken()
       @project= Project.new(nombre: nombre, descripcion: descripcion, user_id: user_id)
       respond_to do |format|
@@ -58,7 +53,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def newmostrar
+  def userprojects
     @user = nil
     User.all.each do |usu|
       if usu.token == params[:token]
@@ -66,14 +61,7 @@ class ProjectsController < ApplicationController
       end
     end
     if @user != nil
-      @projects = Project.where(user_id: params[:usuario])
-      @users = []
-      @projects.each do |project|
-        project = parsearProject(project)
-      end
-      @users.each do |user|
-        user = parsearUsuario(user)
-      end
+      @projects = Project.where(user_id: @user.id)
     end
   end
 

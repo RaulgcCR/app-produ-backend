@@ -37,6 +37,53 @@ class SamplingsController < ApplicationController
     end
   end
 
+  def newsampling
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      nombre = params[:nombre]
+      cantMuestras = params[:cantMuestras]
+      cantMuestrasTotal = params[:cantMuestrasTotal]
+      descripcion = params[:descripcion]
+      fase = params[:fase]
+      project_id = params[:project_id]
+      sampling_type_id = params[:sampling_type_id]
+      tok= createToken()
+      @sampling= Sampling.new(nombre: nombre, cantMuestras: cantMuestras, cantMuestrasTotal: cantMuestrasTotal, descripcion: descripcion, fase: fase, project_id: project_id, sampling_type_id: sampling_type_id)
+      respond_to do |format|
+        if @sampling.save
+          format.html { redirect_to @sampling, notice: 'Sampling was successfully created.' }
+          format.json { render :newsampling, status: :created, location: @sampling }
+        else
+          format.html { render :new }
+          format.json { render json: @sampling.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @sampling = Sampling.new()
+        format.html { render :new }
+        format.json { render json: @sampling.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def projectsamplings
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @samplings = Sampling.where(project_id: params[:id])
+    end
+  end
+
   # PATCH/PUT /samplings/1
   # PATCH/PUT /samplings/1.json
   def update
