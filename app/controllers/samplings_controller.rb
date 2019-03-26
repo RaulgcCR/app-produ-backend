@@ -1,5 +1,7 @@
 class SamplingsController < ApplicationController
   before_action :set_sampling, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
+  before_action :set_default_response_format
 
   # GET /samplings
   # GET /samplings.json
