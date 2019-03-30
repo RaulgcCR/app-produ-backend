@@ -35,6 +35,29 @@ class UsersController < ApplicationController
   end
 
 
+  def finduser
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @cadena = deparser(params[:cadena])
+      @users = User.all
+      if @cadena
+        @users = User.where("nombre like ? or apellido1 like ? or apellido2 like ? or correo like ?", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%")
+      end
+    else
+      respond_to do |format|
+        @users = User.new()
+        format.html { render :show }
+        format.json { render json: @users.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def newuser
     
     @user = nil

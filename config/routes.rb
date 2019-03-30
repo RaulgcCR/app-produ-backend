@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   post '/users/login/' => 'users#newlog'
   post '/users/signup/' => 'users#newuser'
+  post '/users/finduser/' => 'users#finduser'
 
   post '/projects/newproject' => 'projects#newproject'
   post '/projects/userprojects' => 'projects#userprojects'
