@@ -62,7 +62,7 @@ class ProjectsController < ApplicationController
       end
     end
     if @user != nil
-      @projects = Project.where(user_id: @user.id) & Project.where(:id => Colaborator.joins(:projects).where("projects.user_id = ?", @user.id)
+      @projects = Project.where(user_id: @user.id)# & Project.where(:id => Colaborator.joins(:projects).where("projects.user_id = ?", @user.id)
       #categories = Project.where(:id => Colaborator.joins(:projects).where("projects.user_id = ?", @user.id)
     end
   end
