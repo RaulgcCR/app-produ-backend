@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   post '/samplings/newsampling' => 'samplings#newsampling'
   post '/samplings/projectsamplings' => 'samplings#projectsamplings'
 
-  get '/projects/mostrar/:usuario/:token' => 'comments#newmostrar'
+  post '/colaborators/addcolaborator' => 'colaborators#addcolaborator'
 end

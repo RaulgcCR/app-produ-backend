@@ -17,6 +17,10 @@ class ColaboratorsController < ApplicationController
     @colaborator = Colaborator.new
   end
 
+  def addcolaborator
+    
+  end
+
   # GET /colaborators/1/edit
   def edit
   end
