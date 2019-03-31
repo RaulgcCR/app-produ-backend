@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post '/projects/userprojects' => 'projects#userprojects'
 
   post '/samplings/newsampling' => 'samplings#newsampling'
+  post '/samplings/projectsamplings' => 'samplings#projectsamplings'
 
   get '/projects/mostrar/:usuario/:token' => 'comments#newmostrar'
 end
