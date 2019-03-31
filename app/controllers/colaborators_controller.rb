@@ -25,7 +25,7 @@ class ColaboratorsController < ApplicationController
       end
     end
     if @user != nil
-      @user2 = Colaborator.find_by(user_id: params[:user_id] and project_id: params[:project_id])
+      @user2 = Colaborator.find_by(user_id: params[:user_id])# and project_id: params[:project_id])
       if @user2 == nil
         user_id = params[:user_id]
         project_id = params[:project_id]
