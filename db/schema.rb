@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190214214139) do
+ActiveRecord::Schema.define(version: 20190331165236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20190214214139) do
     t.datetime "updated_at", null: false
     t.bigint "project_id"
     t.bigint "sampling_type_id"
+    t.integer "muestrasActual"
     t.index ["project_id"], name: "index_samplings_on_project_id"
     t.index ["sampling_type_id"], name: "index_samplings_on_sampling_type_id"
   end
