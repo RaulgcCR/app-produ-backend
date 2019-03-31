@@ -18,7 +18,41 @@ class ColaboratorsController < ApplicationController
   end
 
   def addcolaborator
-    
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @user2 = Colaborator.find_by(user_id: params[:user_id] and project_id: params[:project_id])
+      if @user2 == nil
+        user_id = params[:user_id]
+        project_id = params[:project_id]
+        @colaborator= Colaborator.new(user_id: user_id, project_id: project_id)
+        respond_to do |format|
+          if @colaborator.save
+            format.html { redirect_to @colaborator, notice: 'User was successfully created.' }
+            format.json { render :addcolaborator, status: :created, location: @colaborator }
+          else
+            format.html { render :new }
+            format.json { render json: @colaborator.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        respond_to do |format|
+          @colaborator = Colaborator.new()
+          format.html { render :new }
+          format.json { render json: @colaborator.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @colaborator = Colaborator.new()
+        format.html { render :new }
+        format.json { render json: @colaborator.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /colaborators/1/edit
