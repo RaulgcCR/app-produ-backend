@@ -1,5 +1,6 @@
 class PathsController < ApplicationController
   before_action :set_path, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /paths
   # GET /paths.json

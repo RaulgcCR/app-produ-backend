@@ -1,5 +1,6 @@
 class OperatorRegistersController < ApplicationController
   before_action :set_operator_register, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /operator_registers
   # GET /operator_registers.json
