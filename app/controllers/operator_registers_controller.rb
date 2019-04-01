@@ -17,6 +17,10 @@ class OperatorRegistersController < ApplicationController
     @operator_register = OperatorRegister.new
   end
 
+  def newregister
+    puts "HOLA OperatorRegister"
+  end
+
   # GET /operator_registers/1/edit
   def edit
   end

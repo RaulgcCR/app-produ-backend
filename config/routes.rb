@@ -26,5 +26,12 @@ Rails.application.routes.draw do
   post '/samplings/newsampling' => 'samplings#newsampling'
   post '/samplings/projectsamplings' => 'samplings#projectsamplings'
 
+  post '/paths/dates' => 'paths#dates'
+  post '/paths/datepaths' => 'paths#datepaths'
+  post '/paths/newpath' => 'paths#newpath'
+  post '/paths/newcomment' => 'paths#newcomment'
+
+  post '/operatorregisters/newregister' => 'operatorregisters#newregister'
+
   post '/colaborators/addcolaborator' => 'colaborators#addcolaborator'
 end

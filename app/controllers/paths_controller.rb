@@ -17,6 +17,91 @@ class PathsController < ApplicationController
     @path = Path.new
   end
 
+  def dates
+    @pathsDates = Path.select(:fecha).distinct
+  end
+
+  def datepaths
+    @user = nil
+    date = params[:fecha]
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @paths = Path.where(fecha: date)
+    end
+  end
+
+  def newpath
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      cantOperarios = params[:cantOperarios]
+      temperatura = params[:temperatura]
+      humedad = params[:humedad]
+      fecha = params[:fecha]
+      hora = params[:hora]
+      comentario = params[:comentario]
+      fase_id = params[:fase_id]
+      @path= Path.new(cantOperarios: cantOperarios, temperatura: temperatura, humedad: humedad, fecha: fecha, hora: hora, comentario: comentario, fase_id: fase_id)
+      respond_to do |format|
+        if @path.save
+          format.html { redirect_to @path, notice: 'Sampling was successfully created.' }
+          format.json { render :newpath, status: :created, location: @path }
+        else
+          format.html { render :new }
+          format.json { render json: @path.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @path = Path.new()
+        format.html { render :new }
+        format.json { render json: @path.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def newcomment
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      name = params[:nombre]
+      lastname = params[:primerapellido]
+      secondlastname = params[:segundoapellido]
+      mail= params[:correo]
+      pwd= params[:password]
+      image= params[:foto]
+      @path = User.find(params[:id])
+      respond_to do |format|
+        if @path.update(comentario: params[:comentario])
+          format.html { redirect_to @path, notice: 'User was successfully updated.' }
+          format.json { render :newcomment, status: :ok, location: @path }
+        else
+          format.html { render :show }
+          format.json { render json: @path.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @path = Path.new()
+        format.html { render :show }
+        format.json { render json: @path.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /paths/1/edit
   def edit
   end
