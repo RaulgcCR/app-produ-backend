@@ -17,6 +17,28 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
 
+  def findactivity
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @cadena = params[:cadena]
+      @activities = Activity.all
+      if @cadena
+        @activities = Activity.where("sampling_type_id = ? AND nombre like ?", params[:sampling_type], "%#{@cadena}%")
+      end
+    else
+      respond_to do |format|
+        @activities = Activity.new()
+        format.html { render :show }
+        format.json { render json: @activities.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /activities/1/edit
   def edit
   end

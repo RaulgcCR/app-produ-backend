@@ -52,7 +52,7 @@ class PathsController < ApplicationController
       @path= Path.new(cantOperarios: cantOperarios, temperatura: temperatura, humedad: humedad, fecha: fecha, hora: hora, comentario: comentario, fase_id: fase_id)
       respond_to do |format|
         if @path.save
-          format.html { redirect_to @path, notice: 'Sampling was successfully created.' }
+          format.html { redirect_to @path, notice: 'Path was successfully created.' }
           format.json { render :newpath, status: :created, location: @path }
         else
           format.html { render :new }

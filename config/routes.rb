@@ -33,5 +33,9 @@ Rails.application.routes.draw do
 
   post '/operatorregisters/newregister' => 'operatorregisters#newregister'
 
+  post '/activities/findactivity' => 'activities#findactivity'
+  
+  post '/operator_registers/newregister' => 'operator_registers#newregister'
+
   post '/colaborators/addcolaborator' => 'colaborators#addcolaborator'
 end

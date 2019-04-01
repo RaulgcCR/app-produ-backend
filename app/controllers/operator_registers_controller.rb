@@ -18,8 +18,34 @@ class OperatorRegistersController < ApplicationController
   end
 
   def newregister
-    puts "HOLA OperatorRegister"
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      path_id = params[:path_id]
+      activity_id = params[:activity_id]
+      @register= OperatorRegister.new(path_id: nombre, activity_id: activity_type)
+      respond_to do |format|
+        if @register.save
+          format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
+          format.json { render :newregister, status: :created, location: @register }
+        else
+          format.html { render :new }
+          format.json { render json: @register.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @register = OperatorRegister.new()
+        format.html { render :new }
+        format.json { render json: @register.errors, status: :unprocessable_entity }
+      end
+    end
   end
+
 
   # GET /operator_registers/1/edit
   def edit

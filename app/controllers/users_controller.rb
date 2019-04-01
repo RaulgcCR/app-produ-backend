@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       end
     end
     if @user != nil
-      @cadena = deparser(params[:cadena])
+      @cadena = params[:cadena]
       @users = User.all
       if @cadena
         @users = User.where("nombre like ? OR apellido1 like ? OR apellido2 like ? OR correo like ?", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%")
