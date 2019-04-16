@@ -37,6 +37,39 @@ class FasesController < ApplicationController
     end
   end
 
+  def newfase
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      fase_type_id = params[:fase_type_id]
+      sampling_id = params[:sampling_id]
+      p = params[:humedad]
+      q = params[:fecha]
+      z = params[:hora]
+      error = params[:comentario]
+      @fase= Fase.new(p: p, q: q, error: error, z: z, sampling_id: sampling_id, fase_type_id: fase_type_id)
+      respond_to do |format|
+        if @fase.save
+          format.html { redirect_to @fase, notice: 'Fase was successfully created.' }
+          format.json { render :newfase, status: :created, location: @fase }
+        else
+          format.html { render :new }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @fase = Fase.new()
+        format.html { render :new }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /fases/1
   # PATCH/PUT /fases/1.json
   def update
