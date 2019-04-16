@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post '/paths/newpath' => 'paths#newpath'
   post '/paths/newcomment' => 'paths#newcomment'
 
-  post '/operatorregisters/newregister' => 'operatorregisters#newregister'
+  post '/fases/newfase' => 'fases#newfase'
 
   post '/activities/findactivity' => 'activities#findactivity'
   
