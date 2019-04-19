@@ -52,7 +52,7 @@ class SamplingsController < ApplicationController
       descripcion = params[:descripcion]
       fase = params[:fase]
       project_id = params[:project_id]
-      sampling_type_id = params[:tipo]
+      sampling_type_id = params[:sampling_type_id]
       puts "HHH XXX YYY"
       puts sampling_type_id
       tok= createToken()
