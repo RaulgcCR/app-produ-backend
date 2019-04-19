@@ -53,6 +53,8 @@ class SamplingsController < ApplicationController
       fase = params[:fase]
       project_id = params[:project_id]
       sampling_type_id = params[:tipo]
+      puts "HHH XXX YYY"
+      puts sampling_type_id
       tok= createToken()
       @sampling= Sampling.new(nombre: nombre, cantMuestras: cantMuestras, cantMuestrasTotal: cantMuestrasTotal, descripcion: descripcion, fase: fase, project_id: project_id, sampling_type_id: sampling_type_id)
       respond_to do |format|
