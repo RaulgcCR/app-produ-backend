@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
       @cadena = params[:cadena]
       @activities = Activity.all
       if @cadena
-        @activities = Activity.where("sampling_type_id = ? AND nombre like ?", params[:sampling_type], "%#{@cadena}%")
+        @activities = Activity.where("sampling_type_id = ? AND nombre like ?", params[:sampling_type_id], "%#{@cadena}%")
       end
     else
       respond_to do |format|
