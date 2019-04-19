@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190331165236) do
+ActiveRecord::Schema.define(version: 20190419214127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20190331165236) do
     t.datetime "updated_at", null: false
     t.bigint "sampling_id"
     t.bigint "fase_type_id"
+    t.integer "extraFlag"
     t.index ["fase_type_id"], name: "index_fases_on_fase_type_id"
     t.index ["sampling_id"], name: "index_fases_on_sampling_id"
   end
@@ -90,7 +91,9 @@ ActiveRecord::Schema.define(version: 20190331165236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "fase_id"
+    t.bigint "sampling_id"
     t.index ["fase_id"], name: "index_paths_on_fase_id"
+    t.index ["sampling_id"], name: "index_paths_on_sampling_id"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -151,6 +154,7 @@ ActiveRecord::Schema.define(version: 20190331165236) do
   add_foreign_key "operator_registers", "activities"
   add_foreign_key "operator_registers", "paths"
   add_foreign_key "paths", "fases"
+  add_foreign_key "paths", "samplings"
   add_foreign_key "projects", "users"
   add_foreign_key "samplings", "projects"
   add_foreign_key "samplings", "sampling_types"
