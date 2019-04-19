@@ -27,8 +27,9 @@ class ActivitiesController < ApplicationController
     end
     if @user != nil
       @cadena = params[:cadena]
-      @activities = Activity.all
-      if @cadena
+      if @cadena.blank?  # blank? covers both nil and empty string
+        @activities = Activity.all
+      else
         @activities = Activity.where("sampling_type_id = ? AND nombre like ?", params[:sampling_type_id], "%#{@cadena}%")
       end
     else
