@@ -1,5 +1,6 @@
 class FasesController < ApplicationController
   before_action :set_fase, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /fases
   # GET /fases.json

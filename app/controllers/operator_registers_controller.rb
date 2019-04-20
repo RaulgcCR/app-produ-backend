@@ -28,7 +28,7 @@ class OperatorRegistersController < ApplicationController
     if @user != nil
       path_id = params[:path_id]
       activity_id = params[:activity_id]
-      @register= OperatorRegister.new(path_id: nombre, activity_id: activity_type)
+      @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
       respond_to do |format|
         if @register.save
           format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
