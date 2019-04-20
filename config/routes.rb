@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post '/paths/newcomment' => 'paths#newcomment'
 
   post '/fases/newfase' => 'fases#newfase'
+  post '/fases/getfase' => 'fases#getfase'
 
   post '/activities/findactivity' => 'activities#findactivity'
   

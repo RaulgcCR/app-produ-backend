@@ -47,11 +47,41 @@ class FasesController < ApplicationController
     if @user != nil
       fase_type_id = params[:fase_type_id]
       sampling_id = params[:sampling_id]
-      p = params[:humedad]
-      q = params[:fecha]
-      z = params[:hora]
-      error = params[:comentario]
-      @fase= Fase.new(p: p, q: q, error: error, z: z, sampling_id: sampling_id, fase_type_id: fase_type_id)
+      p = 0
+      q = 0
+      z = 0
+      error = 0
+      extraFlag = params[:extraFlag]
+      @fase= Fase.new(p: p, q: q, error: error, z: z, sampling_id: sampling_id, fase_type_id: fase_type_id, extraFlag: extraFlag)
+      respond_to do |format|
+        if @fase.save
+          format.html { redirect_to @fase, notice: 'Fase was successfully created.' }
+          format.json { render :newfase, status: :created, location: @fase }
+        else
+          format.html { render :new }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @fase = Fase.new()
+        format.html { render :new }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def getfase
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      fase_type_id = params[:fase_type_id]
+      sampling_id = params[:sampling_id]
+      @fase= Fase.where("sampling_id = ? AND fase_type_id like ?", sampling_id, fase_type_id)
       respond_to do |format|
         if @fase.save
           format.html { redirect_to @fase, notice: 'Fase was successfully created.' }
