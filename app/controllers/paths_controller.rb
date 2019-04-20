@@ -50,7 +50,8 @@ class PathsController < ApplicationController
       hora = params[:hora]
       comentario = params[:comentario]
       fase_id = params[:fase_id]
-      @path= Path.new(cantOperarios: cantOperarios, temperatura: temperatura, humedad: humedad, fecha: fecha, hora: hora, comentario: comentario, fase_id: fase_id)
+      sampling_id = params[:sampling_id]
+      @path= Path.new(cantOperarios: cantOperarios, temperatura: temperatura, humedad: humedad, fecha: fecha, hora: hora, comentario: comentario, fase_id: fase_id, sampling_id: sampling_id)
       respond_to do |format|
         if @path.save
           format.html { redirect_to @path, notice: 'Path was successfully created.' }

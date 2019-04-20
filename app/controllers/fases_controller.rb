@@ -82,15 +82,6 @@ class FasesController < ApplicationController
       fase_type_id = params[:fase_type_id]
       sampling_id = params[:sampling_id]
       @fase= Fase.where("sampling_id = ? AND fase_type_id like ?", sampling_id, fase_type_id)
-      respond_to do |format|
-        if @fase.save
-          format.html { redirect_to @fase, notice: 'Fase was successfully created.' }
-          format.json { render :newfase, status: :created, location: @fase }
-        else
-          format.html { render :new }
-          format.json { render json: @fase.errors, status: :unprocessable_entity }
-        end
-      end
     else
       respond_to do |format|
         @fase = Fase.new()
