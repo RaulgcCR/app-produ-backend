@@ -20,24 +20,28 @@ class OperatorRegistersController < ApplicationController
 
   def newregister
     @user = nil
+    @registers = params[:registers]
     User.all.each do |usu|
-      if usu.token == params[:token]
+      if usu.token == @registers[0].token
         @user = usu
       end
     end
     if @user != nil
-      path_id = params[:path_id]
-      activity_id = params[:activity_id]
-      @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
-      respond_to do |format|
-        if @register.save
-          format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
-          format.json { render :newregister, status: :created, location: @register }
-        else
-          format.html { render :new }
-          format.json { render json: @register.errors, status: :unprocessable_entity }
+      @registers.each do |reg|
+        path_id = reg.path_id
+        activity_id = reg.activity_id
+        @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
+        respond_to do |format|
+          if @register.save
+            format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
+            format.json { render :newregister, status: :created, location: @register }
+          else
+            format.html { render :new }
+            format.json { render json: @register.errors, status: :unprocessable_entity }
+          end
         end
       end
+      
     else
       respond_to do |format|
         @register = OperatorRegister.new()
