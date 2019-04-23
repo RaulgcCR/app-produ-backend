@@ -24,6 +24,7 @@ class OperatorRegistersController < ApplicationController
     puts @registers[0]
     puts "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     User.all.each do |usu|
+      puts "FUUUUUUUUUUCK"
       if usu.token == @registers[0][2]
         puts "ME LLEVA LA MADRE"
         @user = usu
