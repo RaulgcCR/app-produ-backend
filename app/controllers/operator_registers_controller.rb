@@ -22,15 +22,16 @@ class OperatorRegistersController < ApplicationController
     @user = nil
     @registers = params[:registers]
     User.all.each do |usu|
-      if usu.token == @registers[0].token
+      if usu.token == @registers[0][2]
         @user = usu
       end
     end
     if @user != nil
       @registers.each do |reg|
-        path_id = reg.path_id
-        activity_id = reg.activity_id
-        @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
+        path_id = reg.[0]
+        activity_id = reg.[1]
+        puts path_id
+        #@register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
         respond_to do |format|
           if @register.save
             format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
