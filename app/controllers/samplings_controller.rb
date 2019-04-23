@@ -98,12 +98,14 @@ class SamplingsController < ApplicationController
       @sampling = Sampling.find(params[:id])
       if @sampling != nil
         muestrasActual = params[:muestrasActual]
-        if @sampling.update_column(:muestrasActual, muestrasActual)
-          format.html { redirect_to @sampling, notice: 'Fase was successfully updated.' }
-          format.json { render :show, status: :ok, location: @sampling }
-        else
-          format.html { render :edit }
-          format.json { render json: @sampling.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @sampling.update_column(:muestrasActual, muestrasActual)
+            format.html { redirect_to @sampling, notice: 'Fase was successfully updated.' }
+            format.json { render :show, status: :ok, location: @sampling }
+          else
+            format.html { render :edit }
+            format.json { render json: @sampling.errors, status: :unprocessable_entity }
+          end
         end
       else
         respond_to do |format|

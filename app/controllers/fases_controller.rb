@@ -105,12 +105,14 @@ class FasesController < ApplicationController
       if @fase != nil
         p = params[:p]
         q = params[:q]
-        if @fase.update_columns(p: p, q: q)
-          format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
-          format.json { render :show, status: :ok, location: @fase }
-        else
-          format.html { render :edit }
-          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @fase.update_columns(p: p, q: q)
+            format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
+            format.json { render :show, status: :ok, location: @fase }
+          else
+            format.html { render :edit }
+            format.json { render json: @fase.errors, status: :unprocessable_entity }
+          end
         end
       else
         respond_to do |format|
