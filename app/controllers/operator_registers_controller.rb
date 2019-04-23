@@ -21,8 +21,11 @@ class OperatorRegistersController < ApplicationController
   def newregister
     @user = nil
     @registers = params[:registers]
+    puts "ESTE ES EL 1"
     puts @registers[0]
+    puts "ESTE ES EL 2"
     puts @registers[0][:path_id]
+    puts "ESTE ES EL 3"
     puts @registers[0][0]
     puts "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     User.all.each do |usu|
