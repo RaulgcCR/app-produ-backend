@@ -21,7 +21,7 @@ class OperatorRegistersController < ApplicationController
   def newregister
     @user = nil
     @registers = params[:registers]
-    puts @registers
+    puts @registers[0]
     puts "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     User.all.each do |usu|
       if usu.token == @registers[0][2]
