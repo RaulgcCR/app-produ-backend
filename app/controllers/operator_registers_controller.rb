@@ -20,6 +20,7 @@ class OperatorRegistersController < ApplicationController
 
   def newregister
     @user = nil
+    saveFlag = false
     @registers = params[:registers]
     User.all.each do |usu|
       if usu.token == @registers[0][:token]
