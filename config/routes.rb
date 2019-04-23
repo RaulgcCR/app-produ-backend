@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   post '/fases/newfase' => 'fases#newfase'
   post '/fases/getfase' => 'fases#getfase'
+  post '/fases/getfasebyid' => 'fases#getfasebyid'
   post '/fases/addpq' => 'fases#addpq' 
   post '/fases/updateflag' => 'fases#updateflag'
   post '/fases/changefase' => 'fases#changefase'
