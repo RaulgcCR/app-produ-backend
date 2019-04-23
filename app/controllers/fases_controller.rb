@@ -183,21 +183,27 @@ class FasesController < ApplicationController
       end
     end
     if @user != nil
-      @fase = Fase.find(params[:id])
+      fase_type_id = params[:fase_type_id]
+      sampling_id = params[:sampling_id]
+      p = params[:p]
+      q = params[:q]
+      z = params[:z]
+      error = params[:error]
+      extraFlag = params[:extraFlag]
+      @fase= Fase.new(p: p, q: q, error: error, z: z, sampling_id: sampling_id, fase_type_id: fase_type_id, extraFlag: extraFlag)
       respond_to do |format|
-        fase_type_id = params[:fase_type_id]
-        if @fase.update_column(:fase_type_id, fase_type_id)
-          format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
-          format.json { render :changefase, status: :ok, location: @fase }
+        if @fase.save
+          format.html { redirect_to @fase, notice: 'Fase was successfully created.' }
+          format.json { render :changefase, status: :created, location: @fase }
         else
-          format.html { render :show }
+          format.html { render :new }
           format.json { render json: @fase.errors, status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
         @fase = Fase.new()
-        format.html { render :show }
+        format.html { render :new }
         format.json { render json: @fase.errors, status: :unprocessable_entity }
       end
     end
