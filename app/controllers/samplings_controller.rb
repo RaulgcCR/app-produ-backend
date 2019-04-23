@@ -180,6 +180,24 @@ class SamplingsController < ApplicationController
     end
   end
 
+  def getsampling
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @sampling = Sampling.find(params[:id])
+    else
+      respond_to do |format|
+        @sampling = Sampling.new()
+        format.html { render :show }
+        format.json { render json: @sampling.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /samplings/1
   # PATCH/PUT /samplings/1.json
   def update

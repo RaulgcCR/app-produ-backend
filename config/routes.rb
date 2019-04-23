@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post '/samplings/addsamplings' => 'samplings#addsamplings'
   post '/samplings/changefase' => 'samplings#changefase'
   post '/samplings/addmoresamplings' => 'samplings#addmoresamplings'
+  post '/samplings/getsampling' => 'samplings#getsampling'
 
   post '/paths/dates' => 'paths#dates'
   post '/paths/datepaths' => 'paths#datepaths'
