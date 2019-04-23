@@ -53,10 +53,9 @@ class SamplingsController < ApplicationController
       fase = params[:fase]
       project_id = params[:project_id]
       sampling_type_id = params[:sampling_type_id]
-      puts "HHH XXX YYY"
-      puts sampling_type_id
+      muestrasActual = params[:muestrasActual]
       tok= createToken()
-      @sampling= Sampling.new(nombre: nombre, cantMuestras: cantMuestras, cantMuestrasTotal: cantMuestrasTotal, descripcion: descripcion, fase: fase, project_id: project_id, sampling_type_id: sampling_type_id)
+      @sampling= Sampling.new(nombre: nombre, cantMuestras: cantMuestras, cantMuestrasTotal: cantMuestrasTotal, descripcion: descripcion, fase: fase, project_id: project_id, sampling_type_id: sampling_type_id, muestrasActual: muestrasActual)
       respond_to do |format|
         if @sampling.save
           format.html { redirect_to @sampling, notice: 'Sampling was successfully created.' }
@@ -84,6 +83,39 @@ class SamplingsController < ApplicationController
     end
     if @user != nil
       @samplings = Sampling.where(project_id: params[:id])
+    end
+  end
+
+  def addsampling
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @sampling = nil
+      @sampling = Sampling.find(params[:id])
+      if @sampling != nil
+        muestrasActual = params[:muestrasActual]
+        if @sampling.update_column(muestrasActual: muestrasActual)
+          format.html { redirect_to @sampling, notice: 'Fase was successfully updated.' }
+          format.json { render :show, status: :ok, location: @sampling }
+        else
+          format.html { render :edit }
+          format.json { render json: @sampling.errors, status: :unprocessable_entity }
+        end
+      else
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @sampling.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @sampling.errors, status: :unprocessable_entity }
+      end
     end
   end
 

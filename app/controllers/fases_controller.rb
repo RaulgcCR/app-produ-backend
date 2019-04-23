@@ -92,6 +92,40 @@ class FasesController < ApplicationController
     end
   end
 
+  def addpq
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @fase = nil
+      @fase = Fase.find(params[:id])
+      if @fase != nil
+        p = params[:p]
+        q = params[:q]
+        if @fase.update_columns(p: p, q: q)
+          format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
+          format.json { render :show, status: :ok, location: @fase }
+        else
+          format.html { render :edit }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      else
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /fases/1
   # PATCH/PUT /fases/1.json
   def update

@@ -79,15 +79,10 @@ class PathsController < ApplicationController
       end
     end
     if @user != nil
-      name = params[:nombre]
-      lastname = params[:primerapellido]
-      secondlastname = params[:segundoapellido]
-      mail= params[:correo]
-      pwd= params[:password]
-      image= params[:foto]
-      @path = User.find(params[:id])
+      comentario = params[:comentario]
+      @path = Path.find(params[:id])
       respond_to do |format|
-        if @path.update(comentario: params[:comentario])
+        if @path.update_column(comentario: comentario)
           format.html { redirect_to @path, notice: 'User was successfully updated.' }
           format.json { render :newcomment, status: :ok, location: @path }
         else
