@@ -34,8 +34,8 @@ class OperatorRegistersController < ApplicationController
     end
     if @user != nil
       @registers.each do |reg|
-        path_id = reg.[:path_id]
-        activity_id = reg.[:activity_id]
+        path_id = reg[:path_id]
+        activity_id = reg[:activity_id]
         puts reg
         @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
         respond_to do |format|
