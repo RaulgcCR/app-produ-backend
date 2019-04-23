@@ -29,19 +29,19 @@ class OperatorRegistersController < ApplicationController
     end
     if @user != nil
       @registers.each do |reg|
-        path_id = reg.[0]
-        activity_id = reg.[1]
-        puts path_id
+        #path_id = reg.[0]
+        #activity_id = reg.[1]
+        puts reg
         #@register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
-        respond_to do |format|
-          if @register.save
-            format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
-            format.json { render :newregister, status: :created, location: @register }
-          else
-            format.html { render :new }
-            format.json { render json: @register.errors, status: :unprocessable_entity }
-          end
-        end
+        #respond_to do |format|
+          #if @register.save
+           #format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
+            #format.json { render :newregister, status: :created, location: @register }
+          #else
+            #format.html { render :new }
+            #format.json { render json: @register.errors, status: :unprocessable_entity }
+          #end
+        #end
       end
       
     else
