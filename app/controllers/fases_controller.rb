@@ -189,7 +189,7 @@ class FasesController < ApplicationController
         z = params[:z]
         if @fase.update_columns(z: z, error: error)
           format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
-          format.json { render :updateflag, status: :ok, location: @fase }
+          format.json { render :updateerrorz, status: :ok, location: @fase }
         else
           format.html { render :show }
           format.json { render json: @fase.errors, status: :unprocessable_entity }
