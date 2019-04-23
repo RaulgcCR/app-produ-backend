@@ -83,7 +83,7 @@ class PathsController < ApplicationController
       @path = Path.find(params[:id])
       respond_to do |format|
         if @path.update_column(:comentario, comentario)
-          format.html { redirect_to @path, notice: 'User was successfully updated.' }
+          format.html { redirect_to @path, notice: 'Path was successfully updated.' }
           format.json { render :newcomment, status: :ok, location: @path }
         else
           format.html { render :show }

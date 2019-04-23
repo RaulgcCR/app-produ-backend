@@ -121,6 +121,65 @@ class SamplingsController < ApplicationController
     end
   end
 
+  def changefase
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @sampling = Sampling.find(params[:id])
+      respond_to do |format|
+        fase = params[:fase]
+        if @sampling.update_column(:fase, fase)
+          format.html { redirect_to @sampling, notice: 'Sampling was successfully updated.' }
+          format.json { render :newfase, status: :ok, location: @sampling }
+        else
+          format.html { render :show }
+          format.json { render json: @sampling.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @sampling = Sampling.new()
+        format.html { render :show }
+        format.json { render json: @sampling.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def addmoresamplings
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @sampling = Sampling.find(params[:id])
+      respond_to do |format|
+        cantMuestrasP = params[:cantMuestras]
+        cantMuestrasTotalP = params[:cantMuestrasTotal]
+        cantMuestras = @sampling[:cantMuestras] + cantMuestrasP
+        cantMuestrasTotal = @sampling[:cantMuestrasTotal] + cantMuestrasTotalP
+        if @sampling.update_columns(cantMuestras: cantMuestras, cantMuestrasTotal: cantMuestrasTotal)
+          format.html { redirect_to @sampling, notice: 'Sampling was successfully updated.' }
+          format.json { render :newfase, status: :ok, location: @sampling }
+        else
+          format.html { render :show }
+          format.json { render json: @sampling.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @sampling = Sampling.new()
+        format.html { render :show }
+        format.json { render json: @sampling.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /samplings/1
   # PATCH/PUT /samplings/1.json
   def update

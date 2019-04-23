@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post '/samplings/newsampling' => 'samplings#newsampling'
   post '/samplings/projectsamplings' => 'samplings#projectsamplings'
   post '/samplings/addsamplings' => 'samplings#addsamplings'
+  post '/samplings/changefase' => 'samplings#changefase'
+  post '/samplings/addmoresamplings' => 'samplings#addmoresamplings'
 
   post '/paths/dates' => 'paths#dates'
   post '/paths/datepaths' => 'paths#datepaths'
@@ -34,7 +36,9 @@ Rails.application.routes.draw do
 
   post '/fases/newfase' => 'fases#newfase'
   post '/fases/getfase' => 'fases#getfase'
-  post '/fases/addpq' => 'fases#addpq'
+  post '/fases/addpq' => 'fases#addpq' 
+  post '/fases/updateflag' => 'fases#updateflag'
+  post '/fases/changefase' => 'fases#changefase'
 
   post '/activities/findactivity' => 'activities#findactivity'
   

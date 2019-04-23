@@ -92,6 +92,25 @@ class FasesController < ApplicationController
     end
   end
 
+  def getfasebyid
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      id = params[:id]
+      @fase= Fase.find(id)
+    else
+      respond_to do |format|
+        @fase = Fase.new()
+        format.html { render :new }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def addpq
     @user = nil
     User.all.each do |usu|
@@ -123,6 +142,62 @@ class FasesController < ApplicationController
     else
       respond_to do |format|
         format.html { render :edit }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def updateflag
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @fase = Fase.find(params[:id])
+      respond_to do |format|
+        extraFlag = params[:extraFlag]
+        if @fase.update_column(:extraFlag, extraFlag)
+          format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
+          format.json { render :newfase, status: :ok, location: @fase }
+        else
+          format.html { render :show }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @fase = Fase.new()
+        format.html { render :show }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def changefase
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @fase = Fase.find(params[:id])
+      respond_to do |format|
+        fase_type_id = params[:fase_type_id]
+        if @fase.update_column(:fase_type_id, fase_type_id)
+          format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
+          format.json { render :newfase, status: :ok, location: @fase }
+        else
+          format.html { render :show }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @fase = Fase.new()
+        format.html { render :show }
         format.json { render json: @fase.errors, status: :unprocessable_entity }
       end
     end
