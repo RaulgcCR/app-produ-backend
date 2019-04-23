@@ -127,7 +127,7 @@ class FasesController < ApplicationController
         respond_to do |format|
           if @fase.update_columns(p: p, q: q)
             format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
-            format.json { render :show, status: :ok, location: @fase }
+            format.json { render :addpq, status: :ok, location: @fase }
           else
             format.html { render :edit }
             format.json { render json: @fase.errors, status: :unprocessable_entity }
@@ -160,7 +160,7 @@ class FasesController < ApplicationController
         extraFlag = params[:extraFlag]
         if @fase.update_column(:extraFlag, extraFlag)
           format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
-          format.json { render :newfase, status: :ok, location: @fase }
+          format.json { render :updateflag, status: :ok, location: @fase }
         else
           format.html { render :show }
           format.json { render json: @fase.errors, status: :unprocessable_entity }
@@ -188,7 +188,7 @@ class FasesController < ApplicationController
         fase_type_id = params[:fase_type_id]
         if @fase.update_column(:fase_type_id, fase_type_id)
           format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
-          format.json { render :newfase, status: :ok, location: @fase }
+          format.json { render :changefase, status: :ok, location: @fase }
         else
           format.html { render :show }
           format.json { render json: @fase.errors, status: :unprocessable_entity }

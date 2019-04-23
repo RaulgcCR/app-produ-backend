@@ -134,7 +134,7 @@ class SamplingsController < ApplicationController
         fase = params[:fase]
         if @sampling.update_column(:fase, fase)
           format.html { redirect_to @sampling, notice: 'Sampling was successfully updated.' }
-          format.json { render :newfase, status: :ok, location: @sampling }
+          format.json { render :changefase, status: :ok, location: @sampling }
         else
           format.html { render :show }
           format.json { render json: @sampling.errors, status: :unprocessable_entity }
@@ -165,7 +165,7 @@ class SamplingsController < ApplicationController
         cantMuestrasTotal = @sampling[:cantMuestrasTotal] + cantMuestrasTotalP
         if @sampling.update_columns(cantMuestras: cantMuestras, cantMuestrasTotal: cantMuestrasTotal)
           format.html { redirect_to @sampling, notice: 'Sampling was successfully updated.' }
-          format.json { render :newfase, status: :ok, location: @sampling }
+          format.json { render :addmoresamplings, status: :ok, location: @sampling }
         else
           format.html { render :show }
           format.json { render json: @sampling.errors, status: :unprocessable_entity }
