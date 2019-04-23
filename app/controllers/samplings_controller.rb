@@ -97,7 +97,7 @@ class SamplingsController < ApplicationController
       @sampling = nil
       @sampling = Sampling.find(params[:id])
       if @sampling != nil
-        muestrasActual = params[:muestrasActual]
+        muestrasActual = params[:muestrasActual] + @sampling[:muestrasActual]
         respond_to do |format|
           if @sampling.update_column(:muestrasActual, muestrasActual)
             format.html { redirect_to @sampling, notice: 'Fase was successfully updated.' }
