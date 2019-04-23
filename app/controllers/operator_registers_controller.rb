@@ -21,14 +21,8 @@ class OperatorRegistersController < ApplicationController
   def newregister
     @user = nil
     @registers = params[:registers]
-    puts "ESTE ES EL 1"
-    puts @registers[0]
-    puts "ESTE ES EL 2"
-    puts @registers[0][:path_id]
-    puts "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     User.all.each do |usu|
       if usu.token == @registers[0][:token]
-        puts "ME LLEVA LA MADRE"
         @user = usu
       end
     end
@@ -37,18 +31,17 @@ class OperatorRegistersController < ApplicationController
         path_id = reg[:path_id]
         activity_id = reg[:activity_id]
         puts reg
-        @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)
-        respond_to do |format|
-          if @register.save
-            format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
-            format.json { render :newregister, status: :created, location: @register }
-          else
-            format.html { render :new }
-            format.json { render json: @register.errors, status: :unprocessable_entity }
-          end
+        @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)        
+      end
+      respond_to do |format|
+        if @register.save
+          format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
+          format.json { render :newregister, status: :created, location: @register }
+        else
+          format.html { render :new }
+          format.json { render json: @register.errors, status: :unprocessable_entity }
         end
       end
-      
     else
       respond_to do |format|
         @register = OperatorRegister.new()
