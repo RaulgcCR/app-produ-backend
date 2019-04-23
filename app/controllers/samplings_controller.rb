@@ -86,7 +86,7 @@ class SamplingsController < ApplicationController
     end
   end
 
-  def addsampling
+  def addsamplings
     @user = nil
     User.all.each do |usu|
       if usu.token == params[:token]

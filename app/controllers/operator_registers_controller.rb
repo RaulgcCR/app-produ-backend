@@ -31,10 +31,11 @@ class OperatorRegistersController < ApplicationController
         path_id = reg[:path_id]
         activity_id = reg[:activity_id]
         puts reg
-        @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)        
+        @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)  
+        saveFlag = @register.save
       end
       respond_to do |format|
-        if @register.save
+        if saveFlag
           format.html { redirect_to @register, notice: 'Operator Register was successfully created.' }
           format.json { render :newregister, status: :created, location: @register }
         else
