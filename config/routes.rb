@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post '/fases/addpq' => 'fases#addpq' 
   post '/fases/updateflag' => 'fases#updateflag'
   post '/fases/updateerrorz' => 'fases#updateerrorz'
+  post '/fases/updateerror' => 'fases#updateerror'
   post '/fases/changefase' => 'fases#changefase'
 
   post '/activities/findactivity' => 'activities#findactivity'

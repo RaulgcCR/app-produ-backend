@@ -204,6 +204,34 @@ class FasesController < ApplicationController
     end
   end
 
+  def updateerror
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @fase = Fase.find(params[:id])
+      respond_to do |format|
+        error = params[:error]
+        if @fase.update_column(:error, error)
+          format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
+          format.json { render :updateerror, status: :ok, location: @fase }
+        else
+          format.html { render :show }
+          format.json { render json: @fase.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @fase = Fase.new()
+        format.html { render :show }
+        format.json { render json: @fase.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def changefase
     @user = nil
     User.all.each do |usu|
