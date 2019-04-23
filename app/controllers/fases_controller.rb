@@ -122,8 +122,8 @@ class FasesController < ApplicationController
       @fase = nil
       @fase = Fase.find(params[:id])
       if @fase != nil
-        p = params[:p]
-        q = params[:q]
+        p = params[:p] + @fase[:p]
+        q = params[:q] + @fase[:q]
         respond_to do |format|
           if @fase.update_columns(p: p, q: q)
             format.html { redirect_to @fase, notice: 'Fase was successfully updated.' }
