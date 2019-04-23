@@ -82,7 +82,7 @@ class FasesController < ApplicationController
     if @user != nil
       fase_type_id = params[:fase_type_id]
       sampling_id = params[:sampling_id]
-      @fase= Fase.where("sampling_id = ? AND fase_type_id like ?", sampling_id, fase_type_id)
+      @fase= Fase.where("sampling_id = ? AND fase_type_id = ?", sampling_id, fase_type_id)
     else
       respond_to do |format|
         @fase = Fase.new()
