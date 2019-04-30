@@ -19,38 +19,44 @@ class ColaboratorsController < ApplicationController
 
   def addcolaborator
     @user = nil
+    saveFlag = false
+    @colabs = params[:colabs]
     User.all.each do |usu|
-      if usu.token == params[:token]
+      if usu.token == @colabs[0][:token]
         @user = usu
       end
     end
     if @user != nil
       @user2 = Colaborator.find_by(user_id: params[:user_id])# and project_id: params[:project_id])
       if @user2 == nil
-        user_id = params[:user_id]
-        project_id = params[:project_id]
-        @colaborator= Colaborator.new(user_id: user_id, project_id: project_id)
-        respond_to do |format|
-          if @colaborator.save
-            format.html { redirect_to @colaborator, notice: 'User was successfully created.' }
-            format.json { render :addcolaborator, status: :created, location: @colaborator }
-          else
-            format.html { render :new }
-            format.json { render json: @colaborator.errors, status: :unprocessable_entity }
-          end
+        @colabs.each do |reg|
+          project_id = reg[:project_id]
+          user_id = reg[:user_id]
+          puts reg
+          @colab= Colaborator.new(user_id: user_id, project_id: project_id)  
+          saveFlag = @colab.save
         end
+        respond_to do |format|
+        if saveFlag
+          format.html { redirect_to @colab, notice: 'Colaborator was successfully created.' }
+          format.json { render :addcolaborator, status: :created, location: @colab }
+        else
+          format.html { render :new }
+          format.json { render json: @colab.errors, status: :unprocessable_entity }
+        end
+      end
       else
         respond_to do |format|
-          @colaborator = Colaborator.new()
+          @colab = Colaborator.new()
           format.html { render :new }
-          format.json { render json: @colaborator.errors, status: :unprocessable_entity }
+          format.json { render json: @colab.errors, status: :unprocessable_entity }
         end
       end
     else
       respond_to do |format|
-        @colaborator = Colaborator.new()
+        @colab = Colaborator.new()
         format.html { render :new }
-        format.json { render json: @colaborator.errors, status: :unprocessable_entity }
+        format.json { render json: @colab.errors, status: :unprocessable_entity }
       end
     end
   end

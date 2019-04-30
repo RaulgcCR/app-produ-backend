@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20190419214127) do
 
   create_table "paths", force: :cascade do |t|
     t.integer "cantOperarios"
-    t.integer "temperatura"
+    t.float "temperatura"
     t.integer "humedad"
     t.date "fecha"
     t.time "hora"

@@ -44,9 +44,10 @@ class UsersController < ApplicationController
     end
     if @user != nil
       @cadena = params[:cadena]
-      @users = User.all
-      if @cadena
-        @users = User.where("nombre like ? OR apellido1 like ? OR apellido2 like ? OR correo like ?", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%")
+      if @cadena.blank?  # blank? covers both nil and empty string
+        @users = User.all
+      else
+        @users = User.where("correo like ? OR nombre like ? OR apellido1 like ? OR apellido2 like ? ", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%", "%#{@cadena}%")
       end
     else
       respond_to do |format|
