@@ -30,7 +30,13 @@ class ActivitiesController < ApplicationController
       if @cadena.blank?  # blank? covers both nil and empty string
         @activities = Activity.all
       else
-        @activities = Activity.where("sampling_type_id = ? AND lower(nombre) like ?", params[:sampling_type_id], "%#{@cadena.downcase}%")
+        @activitiesAux = Activity.where("lower(nombre) like ?", "%#{@cadena.downcase}%")
+        @activities = []
+        @activitiesAux.each do |act|
+          if act.sampling_type_id == params[:sampling_type_id]
+            @activities.push(act)
+          end
+        end
       end
     else
       respond_to do |format|
