@@ -63,7 +63,7 @@ class OperatorRegistersController < ApplicationController
       end
     end
     if @user != nil
-      @registers = OperatorRegister.includes(:activities).where(path_id: idpath)
+      @registers = OperatorRegister.where(path_id: idpath).includes(:activities)
     end
   end
 
