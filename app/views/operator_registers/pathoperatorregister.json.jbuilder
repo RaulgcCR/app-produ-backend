@@ -1,0 +1,1 @@
+json.registro @registers.to_json(:except => ['created_at', 'updated_at'])

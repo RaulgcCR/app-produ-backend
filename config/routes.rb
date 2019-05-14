@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   post '/activities/findactivity' => 'activities#findactivity'
   
   post '/operator_registers/newregister' => 'operator_registers#newregister'
+  post '/operator_registers/pathoperatorregister' => 'operator_registers#pathoperatorregister'
+  
 
   post '/colaborators/addcolaborator' => 'colaborators#addcolaborator'
 end

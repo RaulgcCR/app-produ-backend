@@ -54,6 +54,20 @@ class OperatorRegistersController < ApplicationController
   end
 
 
+  def pathoperatorregister
+    @user = nil
+    idpath = params[:id]
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @registers = OperatorRegister.joins(:activity_id).where(path_id: idpath)
+    end
+  end
+
+
   # GET /operator_registers/1/edit
   def edit
   end
