@@ -1,1 +1,1 @@
-json.fechas @newPathsDates
+json.fechas @pathsDates
