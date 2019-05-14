@@ -19,7 +19,8 @@ class PathsController < ApplicationController
   end
 
   def dates
-    @pathsDates = Path.select(:id, :fecha)
+    @pathsDates = Path.select(:id, :fecha).where("sampling_id = ?", params[:sampling_id])
+    puts @pathsDates
   end
 
   def datepaths
