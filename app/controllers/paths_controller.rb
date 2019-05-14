@@ -19,8 +19,7 @@ class PathsController < ApplicationController
   end
 
   def dates
-    @pathsDates = Path.select(:id, :fecha).where("sampling_id = ?", params[:sampling_id]).group(:id, :fecha)
-    puts @pathsDates
+    @pathsDates = Path.select(:id, :fecha).where("sampling_id = ?", params[:sampling_id]).distinct
   end
 
   def datepaths
