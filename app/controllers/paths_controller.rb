@@ -19,10 +19,7 @@ class PathsController < ApplicationController
   end
 
   def dates
-    @pathsDates = Path.select(:id, :fecha).where("sampling_id = ?", params[:sampling_id]).each do |record|
-      puts "---------"
-      puts record
-    end
+    @pathsDates = Path.select(:id, :fecha).where("sampling_id = ?", params[:sampling_id]).group(:id, :fecha).map(&:fecha)
   end
 
   def datepaths
