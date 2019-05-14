@@ -19,7 +19,7 @@ class PathsController < ApplicationController
   end
 
   def dates
-    @newPathsDates = Path.where("sampling_id = ?", params[:sampling_id])
+    @newPathsDates = Path.all
   end
 
   def datepaths
