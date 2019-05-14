@@ -1,3 +1,3 @@
 class Activity < ApplicationRecord
-	has_many: operator_register
+	has_many: operator_registers
 end
