@@ -19,7 +19,7 @@ class PathsController < ApplicationController
   end
 
   def dates
-    @pathsDates = Path.select(:id, :fecha)
+    @newPathsDates = Path.select(:id, :fecha)
   end
 
   def datepaths
