@@ -31,7 +31,6 @@ class OperatorRegistersController < ApplicationController
       @registers.each do |reg|
         path_id = reg[:path_id]
         activity_id = reg[:activity_id]
-        puts reg
         @register= OperatorRegister.new(path_id: path_id, activity_id: activity_id)  
         saveFlag = @register.save
       end
@@ -64,7 +63,7 @@ class OperatorRegistersController < ApplicationController
     end
     if @user != nil
       @registers = OperatorRegister.includes(:activity).where(path_id: idpath)
-      puts "HOLA AQUI COLUMBIA"
+      puts "HOLA AQUI MICHAEL"
       puts @registers.to_json(:except => ['created_at', 'updated_at'])
     end
   end
