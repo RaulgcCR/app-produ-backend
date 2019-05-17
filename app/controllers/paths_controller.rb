@@ -24,6 +24,7 @@ class PathsController < ApplicationController
 
   def datepaths
     @user = nil
+    sampling_id = params[:id]
     date = params[:fecha]
     User.all.each do |usu|
       if usu.token == params[:token]
@@ -31,7 +32,7 @@ class PathsController < ApplicationController
       end
     end
     if @user != nil
-      @paths = Path.where(fecha: date)
+      @paths = Path.where(fecha: date, sampling_id: sampling_id)
     end
   end
 
