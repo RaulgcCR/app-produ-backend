@@ -63,9 +63,9 @@ class OperatorRegistersController < ApplicationController
       end
     end
     if @user != nil
-      @registers = OperatorRegister.where(path_id: idpath).includes(:activity)
+      @registers = OperatorRegister.includes(:activity).where(path_id: idpath)
       puts "HOLA AQUI COLUMBIA"
-      puts @registers.to_json()
+      puts @registers.to_json(:except => ['created_at', 'updated_at'])
     end
   end
 
