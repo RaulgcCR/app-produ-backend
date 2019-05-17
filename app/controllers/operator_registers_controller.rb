@@ -62,7 +62,7 @@ class OperatorRegistersController < ApplicationController
       end
     end
     if @user != nil
-      @registers = OperatorRegister.where(path_id: idpath).includes(:operator_register => :activity)
+      @registers = OperatorRegister.where(path_id: idpath).includes(:activity).references(:activities)
       puts "BOLA AQUI MICHAEL"
       puts @registers.to_json(:except => ['created_at', 'updated_at'])
     end
