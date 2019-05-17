@@ -64,6 +64,7 @@ class OperatorRegistersController < ApplicationController
     end
     if @user != nil
       @registers = OperatorRegister.where(path_id: idpath).includes(:activity)
+      puts @registers.to_json()
     end
   end
 
