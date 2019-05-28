@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   post '/fases/changefase' => 'fases#changefase'
 
   post '/activities/findactivity' => 'activities#findactivity'
+  post '/activities/getactivities' => 'activities#getactivities'
   
   post '/operator_registers/newregister' => 'operator_registers#newregister'
   post '/operator_registers/pathoperatorregister' => 'operator_registers#pathoperatorregister'

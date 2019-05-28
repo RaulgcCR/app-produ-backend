@@ -1,0 +1,1 @@
+json.actividad @activities.to_json(:except => ['created_at', 'updated_at'])
