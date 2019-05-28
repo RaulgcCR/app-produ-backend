@@ -48,7 +48,7 @@ class ActivitiesController < ApplicationController
   end
 
   def getactivities
-    objs = params[:registers]
+    @objs = params[:registers]
     ids = []
     @objs.each do |obj|
         ids.push(obj[:activity_id])
