@@ -57,7 +57,6 @@ class ActivitiesController < ApplicationController
     if @user != nil
       ids = params[:registers]
       @activities = Activity.where(:id => ids)
-      end
     else
       respond_to do |format|
         @activities = Activity.new()
