@@ -8,10 +8,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    @user = User.all
-    @user.each do |user|
-      user = parsearUsuario(user)
-    end
   end
 
   # GET /users/1
@@ -30,8 +26,7 @@ class UsersController < ApplicationController
     pwd = params[:password]
     puts mail
     puts pwd
-    valor = User.where(correo: mail, password: pwd)
-    @user = valor
+    @user = User.where(correo: mail, password: pwd)
   end
 
 
@@ -142,14 +137,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def parsearUsuario(user)
-    user.nombre = parser(user.nombre)
-    user.apellido1 = parser(user.apellido1)
-    user.apellido2 = parser(user.apellido2)
-    user.correo = parser(user.correo)
-    user.password = parser(user.password)
-    return user
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

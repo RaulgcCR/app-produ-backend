@@ -7,10 +7,6 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    @project = Project.all
-    @project.each do |project|
-      project = parsearProject(project)
-    end
   end
 
   # GET /projects/1
@@ -109,12 +105,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def parsearProject(project)
-    project.nombre = parser(project.nombre)
-    project.descripcion = parser(project.descripcion)
-    return project
   end
 
   private
